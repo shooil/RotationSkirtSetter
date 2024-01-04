@@ -126,8 +126,8 @@ public class SkirtBone {
     }
 
     public UnityEngine.Vector3 GetSkirtVector(){
-        var vec = this.bone.transform.localPosition;
-        var vecChild = this.GetSkirtBone().transform.localPosition;
+        var vec = this.bone.transform.position;
+        var vecChild = this.GetSkirtBone().transform.position;
         var norm = (vec - vecChild).normalized;
         return norm;
     }
@@ -153,8 +153,7 @@ public class SkirtBone {
         var skirtroot = new GameObject();
         skirtroot.transform.parent = this.bone.transform.parent;
         skirtroot.transform.name = this.bone.transform.name + "_root";
-        // skirtroot.transform.localPosition = this.bone.transform.localPosition + this.GetSkirtVector()*0.02f;
-        skirtroot.transform.localPosition = this.bone.transform.localPosition + new UnityEngine.Vector3(0,1.0f,0)*0.02f;
+        skirtroot.transform.localPosition = this.bone.transform.localPosition + this.GetSkirtVector()*0.01f;
 
         // Add parentconstraint to skirt bone follow new bone object
         var script = this.bone.AddComponent<ParentConstraint>();
